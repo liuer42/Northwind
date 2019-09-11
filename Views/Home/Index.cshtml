@@ -1,11 +1,151 @@
-﻿<div class="jumbotron my-2" style="background-color:black">
+﻿
+    <div class="toast" style="position: absolute; top: 0; right: 0;">
+        <div class="toast-header">
+            <div>Toast Header</div>
+            <button class="ml-2 mb-1 close" type="button" data-dismiss="toast">&times;</button>
+        </div>
+        <div class="toast-body">
+            Some text inside the toast body
+        </div>
+    </div>
+
+<div class="jumbotron my-2 shadow-lg p-6 mb-0 mr-0 ml-0" @*class="jumbotron card card-image"*@ @*style="background-color:black"*@ style="background-image: url(foodbackground.jpg); background-size: cover;">
     <h1 class="display-4" style="color:white"><i class="fas fa-crow"></i> Northwind</h1>
     <p class="lead" style="color:ghostwhite">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
     <hr class="my-4">
     <p style="color:ghostwhite">For exceptional international cuisine, look no further.</p>
-    <a class="btn btn-outline-light btn-lg" href="#" role="button" style="color:cyan"><i class="fas fa-shopping-cart"></i> Order Now</a>
+    <a class="btn btn-outline-light btn-lg btn-dark" href="#" role="button" style="color:white"><i class="fas fa-shopping-cart"></i> Order Now</a>
+
 </div>
 
+
+
+
+
+<div class="container-fluid" style="color:white">
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6 mb-3 border border-dark p-3">
+            <h3>Tis the seasoning</h3>
+            <p>
+                Order today! Save 12.5% on Chef Anton's Italian Seasoning. You don't want to make Chef Anton mad, do you?
+            </p>
+            <br />
+            <p>Discount expires: 2/25/2020</p>
+            <button type="button" class="btn btn-info clickme" id="disc1">Get Discount</button>
+        </div>
+
+        <div class="col-md-4 col-sm-6 mb-3 border border-dark p-3">
+            <h3>Go Green!</h3>
+            <p>
+                Genen Shouyu goes on sale very rarely. Order now to save 10% off our already low price. BUY IT NOW!
+            </p>
+            <br />
+            <p>Discount expires: 2/25/2020</p>
+            <button type="button" class="btn btn-info clickme" id="disc2">Get Discount</button>
+        </div>
+        <div class="col-md-4 col-sm-12 mb-3 border border-dark p-3">
+            <h3>Half Price</h3>
+            <p>
+                Just because you can't pronounce "Schoggi Schokolade" doesn't mean you shouldn't buy it. Get it now for 50% off!
+            </p>
+            <br />
+            <p>Discount expires: 2/25/2020</p>
+            <button type="button" class="btn btn-info clickme" id="disc3">Get Discount</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="animated fadeInRightBig">Happy Birthday</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" />
+            </div>
+            <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input type="text" class="form-control" id="birthday" />
+            </div>
+
+            <!-- cards -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Select your balloons</h5>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="blue" />
+                        <label class="form-check-label" for="">Blue balloons</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="red" />
+                        <label class="form-check-label" for="">Red balloons</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="green" />
+                        <label class="form-check-label" for="">Green ballons</label>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" class="btn btn-outline-light">Submit</button>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <img src="~/balloons/blue.png" id="blueImg" />
+            <img src="~/balloons/red.png" id="redImg" />
+            <img src="~/balloons/green.png" id="greenImg" />
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+@*@section Scripts {
+        <script type="text/javascript" src="/js/client.js"></script>
+    }*@
+
 @section Scripts {
-    <script type="text/javascript" src="/js/client.js"></script>
+    <script src="js/client.js"></script>
+    <script>
+        $(function () {
+
+            var toastAudio = new Audio('/media/toast.wav');
+            toastAudio.currentTime = 0;
+            toastAudio.play();
+
+            $('.clickme').on('click', function () {
+                $('.toast').toast({ autohide: false }).toast('show');
+                $('.toast-header:first-child').text($(this).data('Header'));
+                $('.toast-body').text("Discount code: " + $(this).data('code'));
+            })
+
+            $('#disc1').data({ 'Header': "Anton's Seasoning", 'code': "anton1234" });
+            $('#disc2').data({ 'Header': "Genen Shouyu", 'code': "shouyu1234" });
+            $('#disc3').data({ 'Header': "Schoggi Schokolade", 'code': "schog1234" });
+
+            $('#birthday').datepicker();
+
+            //$('#blueballoon').draggable();
+
+            $('.toastClose').keyup(function () {
+                $('.toast').toast('hide');
+            })
+
+            $(document).on('keyup', function (e) {
+                if (e.key === 'Escape') {
+                    $('.toast').toast('hide');
+                }
+            })
+
+
+        });
+    </script>
 }
