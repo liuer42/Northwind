@@ -14,7 +14,7 @@
     <link href="https://code.jquery.com/ui/1.12.1/themes/dot-luv/jquery-ui.css" rel="stylesheet" />
 
     @*Animate CSS*@
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css"  rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css" rel="stylesheet" />
 
     @*<link href="/css/bootstrap-custom.min.css" rel="stylesheet" />*@
 
@@ -31,11 +31,10 @@
 </head>
 <body class="d-flex flex-column">
     <div id="page-content">
-        
-        <!-- navbar -->
 
+        <!-- navbar -->
         <nav class="navbar navbar-expand-md navbar-dark" style="background-color:darkslategray">
-            <a class="navbar-brand" href="#"><i class="far fa-compass fa-spin"></i> Northwind</a>
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><i class="far fa-compass fa-spin"></i> Northwind</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -46,7 +45,7 @@
                             <i class="fas fa-chess-rook"></i> Products
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" asp-action="Category"><i class="fas fa-list-ul"></i> Browse Categories</a>
+                            <a class="dropdown-item" asp-action="Category" asp-controller="Product"><i class="fas fa-list-ul"></i> Browse Categories</a>
                             <a class="dropdown-item" href="#"><i class="fas fa-search"></i> Product Search</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"><i class="fas fa-tag"></i> Current Discounts</a>
@@ -59,7 +58,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" asp-action="Category"><i class="fas fa-user"></i> Account</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-edit"></i> Register</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="Contact"><i class="fas fa-edit"></i> Register</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#"><i class="fas fa-key"></i> Sign in</a>
                         </div>
@@ -88,16 +87,16 @@
                 <p><small>Copyright 2019 &copy; Northwind Traders</small></p>
             </div>
         </footer>
-        </div>
+    </div>
 
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-                integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-                crossorigin="anonymous"></script>
-        <!-- popper & bootstrap -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        @RenderSection("Scripts", required: false)
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <!-- popper & bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

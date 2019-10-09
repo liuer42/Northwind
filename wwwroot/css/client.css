@@ -32,8 +32,10 @@ h1.animated {
     /*border: 5px;
     border-color: black;
     border-style: solid;*/
-    
+    background-image: url(/images/foodbackground.jpg);
+    background-size: cover;
 }
+
 
 .searchbar {
     margin-bottom: auto;
@@ -75,7 +77,7 @@ h1.animated {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color: white;
+    color: white
 }
 
 #sticky-footer {
@@ -86,6 +88,7 @@ footer{
     height: 40px;
     position:fixed;
     bottom: 0;
+    
 }
 .footer p {
     margin-bottom: 30px;
