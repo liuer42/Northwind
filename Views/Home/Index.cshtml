@@ -1,96 +1,64 @@
 ﻿@using Northwind.Models;
-@model  IEnumerable<Discount>
+@model IEnumerable<Discount>
 
-<div class="toast" style="position: absolute; top: 0; right: 0;">
-    <div class="toast-header">
-        <div>Toast Header</div>
-        <button class="ml-2 mb-1 close" type="button" data-dismiss="toast">&times;</button>
-    </div>
-    <div class="toast-body">
-        Some text inside the toast body
-    </div>
-</div>
+    
 
-<div class="jumbotron my-2 border border-secondary">
-    <h1 class="display-4">Northwind</h1>
-    <p class="lead">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
-    <hr class="my-4">
-    <p>For exceptional international cuisine, look no further.</p>
-    <a class="btn btn-outline-primary btn-lg" href="#" role="button"><i class="fas fa-shopping-cart"></i> Order Now</a>
-</div>
+    <div class="jumbotron my-2 border border-secondary" style="background-image: url(/images/foodbackground.jpg); background-size: cover; color: white;">
+        <h1 class="display-4">Northwind</h1>
+        <p class="lead">We have the best prices and selection of high quality foods &amp; beverages on the planet! Check out our featured discounts below.</p>
+        <hr class="my-4">
+        <p>For exceptional international cuisine, look no further.</p>
+        <a class="btn btn-dark btn-lg" href="#" role="button"><i class="fas fa-shopping-cart"></i> Order Now</a>
+    </div>
+
 
 <div class="container-fluid" style="color:white">
 
     <div class="row">
         @foreach (Discount d in Model)
         {
-        <div class="col-md-4 col-sm-6 mb-3 border border-dark p-3">
-            <h3>@d.Title</h3>
-            <p>
-                @d.Description
-            </p>
-            <br />
-            <p>@d.EndTime</p>
-            <button type="button" class="btn btn-info clickme" id="disc1">Get Discount</button>
-        </div>
+            <div class="col-md-4 col-sm-12 col-lg-4 mb-3 border border-dark p-3" discounts>
+                <h3>@d.Title</h3>
+                <p>
+                    @d.Description
+                </p>
+                <br />
+                <p>Discount Expires: @d.EndTime.ToString("MM/dd/yyyy")</p>
+                <button data-code="@d.Code" data-product="@d.Title" class="btn btn-info clickme">Get Discount</button>
+            </div>
         }
         @*<div class="col-md-4 col-sm-6 mb-3 border border-dark p-3">
-            <h3>Tis the seasoning</h3>
-            <p>
-                Order today! Save 12.5% on Chef Anton's Italian Seasoning. You don't want to make Chef Anton mad, do you?
-            </p>
-            <br />
-            <p>Discount expires: 2/25/2020</p>
-            <button type="button" class="btn btn-info clickme" id="disc1">Get Discount</button>
-        </div>
+                <h3>Tis the seasoning</h3>
+                <p>
+                    Order today! Save 12.5% on Chef Anton's Italian Seasoning. You don't want to make Chef Anton mad, do you?
+                </p>
+                <br />
+                <p>Discount expires: 2/25/2020</p>
+                <button type="button" class="btn btn-info clickme" id="disc1">Get Discount</button>
+            </div>
 
-        <div class="col-md-4 col-sm-6 mb-3 border border-dark p-3">
-            <h3>Go Green!</h3>
-            <p>
-                Genen Shouyu goes on sale very rarely. Order now to save 10% off our already low price. BUY IT NOW!
-            </p>
-            <br />
-            <p>Discount expires: 2/25/2020</p>
-            <button type="button" class="btn btn-info clickme" id="disc2">Get Discount</button>
-        </div>
-        <div class="col-md-4 col-sm-12 mb-3 border border-dark p-3">
-            <h3>Half Price</h3>
-            <p>
-                Just because you can't pronounce "Schoggi Schokolade" doesn't mean you shouldn't buy it. Get it now for 50% off!
-            </p>
-            <br />
-            <p>Discount expires: 2/25/2020</p>
-            <button type="button" class="btn btn-info clickme" id="disc3">Get Discount</button>
-        </div>*@
+            <div class="col-md-4 col-sm-6 mb-3 border border-dark p-3">
+                <h3>Go Green!</h3>
+                <p>
+                    Genen Shouyu goes on sale very rarely. Order now to save 10% off our already low price. BUY IT NOW!
+                </p>
+                <br />
+                <p>Discount expires: 2/25/2020</p>
+                <button type="button" class="btn btn-info clickme" id="disc2">Get Discount</button>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-3 border border-dark p-3">
+                <h3>Half Price</h3>
+                <p>
+                    Just because you can't pronounce "Schoggi Schokolade" doesn't mean you shouldn't buy it. Get it now for 50% off!
+                </p>
+                <br />
+                <p>Discount expires: 2/25/2020</p>
+                <button type="button" class="btn btn-info clickme" id="disc3">Get Discount</button>
+            </div>*@
 
     </div>
 </div>
 
 @section Scripts {
-    @*<script src="../../wwwroot/js/client.js"></script>*@
-    <script>
-        $(function () {
-            var toastAudio = new Audio('/media/toast.wav');
-            toastAudio.currentTime = 0;
-            toastAudio.play();
-            $('.clickme').on('click', function () {
-                $('.toast').toast({ autohide: false }).toast('show');
-                $('.toast-header:first-child').text($(this).data('Header'));
-                $('.toast-body').text("Discount code: " + $(this).data('code'));
-            })
-            $('#disc1').data({ 'Header': "Anton's Seasoning", 'code': "anton1234" });
-            $('#disc2').data({ 'Header': "Genen Shouyu", 'code': "shouyu1234" });
-            $('#disc3').data({ 'Header': "Schoggi Schokolade", 'code': "schog1234" });
-            $('#birthday').datepicker();
-            //$('#blueballoon').draggable();
-            $('.toastClose').keyup(function () {
-                $('.toast').toast('hide');
-            })
-            $(document).on('keyup', function (e) {
-                if (e.key === 'Escape') {
-                    $('.toast').toast('hide');
-                }
-            })
-        });
-    </script>
+    <script src="/js/client.js"></script>
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
 
@@ -32,6 +33,12 @@ namespace Northwind.Controllers
 
             results = _repository.Categories.OrderBy(c => c.CategoryName);
             
+            return View(results);
+        }
+
+        public IActionResult Discounts()
+        {
+            var results = _repository.Discounts.Where(d => d.StartTime <= DateTime.Now && d.EndTime > DateTime.Now);
             return View(results);
         }
     }

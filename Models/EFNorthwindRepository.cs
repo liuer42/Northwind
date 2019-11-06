@@ -16,6 +16,7 @@ namespace Northwind.Models
         public IQueryable<Product> Products => context.Products;
         public IQueryable<Discount> Discounts => context.Discounts;
         public IQueryable<Contact> Contacts => context.Contacts;
+        public IQueryable<Customer> Customers => context.Customers;
 
         public void AddContact(Contact contact)
         {
@@ -23,5 +24,23 @@ namespace Northwind.Models
             context.SaveChanges();
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            context.Customers.Add(customer);
+            context.SaveChanges();
+        }
+
+        public void EditCustomer(Customer customer)
+        {
+            var customerToUpdate = context.Customers.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+            customerToUpdate.Address = customer.Address;
+            customerToUpdate.City = customer.City;
+            customerToUpdate.Region = customer.Region;
+            customerToUpdate.PostalCode = customer.PostalCode;
+            customerToUpdate.Country = customer.Country;
+            customerToUpdate.Phone = customer.Phone;
+            customerToUpdate.Fax = customer.Fax;
+            context.SaveChanges();
+        }
     }
 }

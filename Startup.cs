@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Northwind.Models;
@@ -19,6 +20,19 @@ namespace Northwind
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
+
+            //identity setup
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseSqlServer(Configuration["Data:Northwind:ConnectionString"]));
+                services.AddIdentity<AppUser, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddTransient<INorthwindRepository, EFNorthwindRepository>();
             services.AddMvc();
         }
@@ -31,6 +45,8 @@ namespace Northwind
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
+            //allows wwwroot directory files
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
